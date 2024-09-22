@@ -1,14 +1,18 @@
 <template>
   <div class="register-renter-container">
-    <div class="register-left-side">
-      <!-- Título para pantallas grandes -->
+    <div class="image-side">
+      <img src="../assets/carimage.png" alt="Car Image" />
+    </div>
+    <div class="register-right-side">
       <h1 class="title">SpeedyRent</h1>
-
-      <!-- Logo para pantallas pequeñas -->
       <img class="logo-small" src="/public/logo_speedy.jpeg" alt="Speedy Rent Logo" />
-
       <div class="register-card">
         <form @submit.prevent="registerUser">
+          <div class="form-group">
+            <label for="fullName">Name</label>
+            <input type="text" v-model="fullName" placeholder="Name" required />
+          </div>
+
           <div class="form-group">
             <label for="email">Email</label>
             <input type="email" v-model="email" placeholder="E-mail" required />
@@ -19,13 +23,11 @@
             <input type="password" v-model="password" placeholder="Password" required />
           </div>
 
-          <!-- Campo adicional para Confirmar Contraseña -->
           <div class="form-group">
             <label for="confirm-password">Confirm Password</label>
             <input type="password" v-model="confirmPassword" placeholder="Confirm Password" required />
           </div>
 
-          <!-- Campo adicional para Número de teléfono con código predeterminado +51 -->
           <div class="form-group phone-group">
             <label for="phoneNumber">Phone Number</label>
             <div class="phone-inputs">
@@ -46,9 +48,6 @@
         </form>
       </div>
     </div>
-    <div class="image-side">
-      <img src="../assets/carimage.png" alt="Car Image" />
-    </div>
   </div>
 </template>
 
@@ -56,27 +55,47 @@
 export default {
   data() {
     return {
+      fullName: '',
       email: '',
       password: '',
-      confirmPassword: '', // Campo de confirmación de contraseña
-      phoneNumber: '', // Campo para número de teléfono
+      confirmPassword: '',
+      phoneNumber: '',
       receiveEmails: false
     };
   },
   methods: {
     registerUser() {
+      // Validación del número de teléfono
+      if (!/^\d{9}$/.test(this.phoneNumber)) {
+        alert("El número de teléfono debe tener 9 dígitos.");
+        return;
+      }
+      if (!/^9\d{8}$/.test(this.phoneNumber)) {
+        alert("El número de teléfono debe comenzar con un 9.");
+        return;
+      }
+
+      // Validación de contraseñas
+      if (this.password !== this.confirmPassword) {
+        alert("Las contraseñas no coinciden.");
+        return;
+      }
+
+      // Si todo es válido, los datos del usuario pueden enviarse
       const userData = {
+        fullName: this.fullName,
         email: this.email,
         password: this.password,
-        confirmPassword: this.confirmPassword,
         phoneNumber: this.phoneNumber,
         receiveEmails: this.receiveEmails
       };
       console.log('User data:', userData);
+      alert("Registro exitoso");
     }
   }
 };
 </script>
+
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@600&display=swap'); /* Fuente Roboto Semibold */
@@ -87,16 +106,8 @@ export default {
   height: 100vh;
   align-items: center;
   justify-content: flex-start;
-  padding-left: 5vw;
+  padding-right: 5vw;
   box-sizing: border-box;
-}
-
-.register-left-side {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
 }
 
 .image-side {
@@ -108,7 +119,16 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover; /* Asegura que la imagen cubra todo el contenedor sin deformarse */
-  object-position: 100% center; /* Posición predeterminada al centro de la imagen */
+  object-position: 100% 50%; /* Muestra el borde derecho centrado verticalmente */
+}
+
+
+.register-right-side {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrar la tarjeta y el título horizontalmente */
+  justify-content: center; /* Centrar verticalmente */
 }
 
 .title {
@@ -117,6 +137,7 @@ export default {
   font-weight: 500;
   margin-bottom: 30px;
   color: #2c3e50;
+  text-align: center; /* Asegura que el texto del título esté centrado */
 }
 
 .logo-small {
@@ -198,6 +219,11 @@ input {
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  transition: background-color 0.3s ease; /* Añade una transición suave */
+}
+
+.register-btn:hover {
+  background-color: #2ECC71; /* Cambia a color verde esmeralda cuando el mouse pasa sobre el botón */
 }
 
 .small-text {
@@ -213,7 +239,7 @@ input {
     padding: 0 5vw;
   }
 
-  .register-left-side {
+  .register-right-side {
     width: 100%;
     align-items: center;
   }
