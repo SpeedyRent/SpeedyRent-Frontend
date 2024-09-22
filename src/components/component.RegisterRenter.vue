@@ -1,7 +1,12 @@
 <template>
   <div class="register-renter-container">
     <div class="register-left-side">
+      <!-- Título para pantallas grandes -->
       <h1 class="title">SpeedyRent</h1>
+
+      <!-- Logo para pantallas pequeñas -->
+      <img class="logo-small" src="/public/logo_speedy.jpeg" alt="Speedy Rent Logo" />
+
       <div class="register-card">
         <form @submit.prevent="registerUser">
           <div class="form-group">
@@ -102,7 +107,8 @@ export default {
 .image-side img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* Asegura que la imagen cubra todo el contenedor sin deformarse */
+  object-position: 100% center; /* Posición predeterminada al centro de la imagen */
 }
 
 .title {
@@ -113,12 +119,21 @@ export default {
   color: #2c3e50;
 }
 
+.logo-small {
+  display: none;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 30px;
+}
+
 .register-card {
   width: 400px;
   background-color: white;
   padding: 40px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  border: 1px solid #ccc; /* Borde delgado */
 }
 
 h1, label, input, button {
@@ -138,36 +153,6 @@ input {
   border-radius: 5px;
 }
 
-/* Estilo para el grupo de entrada del teléfono */
-.phone-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-}
-
-.phone-inputs {
-  display: flex;
-  align-items: center;
-}
-
-.country-code {
-  width: 60px; /* Ancho fijo para el código de país */
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px 0 0 5px;
-  font-size: 16px;
-  background-color: #f2f2f2;
-}
-
-.phone-number {
-  width: 100%; /* Ocupará el resto del ancho disponible */
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-left: none; /* Quitar borde del lado izquierdo para unirse al campo del código */
-  border-radius: 0 5px 5px 0; /* Bordes redondeados */
-}
-
 .checkbox-group {
   display: flex;
   align-items: center;
@@ -179,6 +164,29 @@ input {
 .checkbox-label {
   font-size: 14px;
   margin-left: 1px; /* Ajusta el espacio entre el checkbox y el texto */
+}
+
+.phone-inputs {
+  display: flex;
+  align-items: center;
+}
+
+.country-code {
+  width: 60px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+  font-size: 16px;
+  background-color: #f2f2f2;
+}
+
+.phone-number {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-left: none;
+  border-radius: 0 5px 5px 0;
 }
 
 .register-btn {
@@ -221,8 +229,11 @@ input {
   }
 
   .title {
-    text-align: center;
-    font-size: 50px;
+    display: none;
+  }
+
+  .logo-small {
+    display: block;
   }
 }
 </style>
