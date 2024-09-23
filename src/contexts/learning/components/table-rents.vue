@@ -41,7 +41,6 @@
           </template>
         </pv-column>
       </pv-data-table>
-
       <div class="button-container">
         <RouterLink to="/myNotifications">
           <pv-button label="Back" @click="goBack" class="center-button" />
@@ -71,37 +70,46 @@ onMounted(async () => {
   selectedTenant.value = tenants.value.find(tenant => tenant.id == tenantId); // Busca por ID
 });
 
-const approveTenant = (tenant) => {
+const approveTenant = async (tenant) => {
   tenant.status = "Approved";
+  await tenantApiServices.updateTenantDates(tenant.id, { status: tenant.status }); // Actualiza en la API
 };
-const rejectTenant = (tenant) => {
+const rejectTenant = async (tenant) => {
   tenant.status = "Rejected";
+  await tenantApiServices.updateTenantDates(tenant.id, { status: tenant.status }); // Actualiza en la API
 };
 </script>
 
 <style scoped>
-.table-container {
-  //display: flex;
-  flex-direction: column;
-  align-items: center; /* Centra los elementos horizontalmente */
-  padding: 20px;
+.table-title {
+  font-size: 24px; /* Tamaño de fuente grande */
+  color: #4CAF50; /* Color del título */
+  margin-bottom: 16px; /* Espaciado debajo del título */
+  text-align: center; /* Centra el título */
 }
 
-.table-data-tenant{
-  padding: 20px;
+.styled-table {
+  border-collapse: collapse;
+  width: 100%;
 }
 
-.button-container {
-  margin-top: 40px; /* Espacio entre la tabla y el botón */
+.styled-table th,
+.styled-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
-.center-button {
-  width: 100px; /* Opcional: ancho del botón */
+.styled-table th {
+  background-color: #4CAF50; /* Color de fondo para el encabezado */
+  color: white;
 }
 
-.titule_tabla{
-  font-size: 20px;
-  font-weight: bold;
-  color:#2c3e50;
+.styled-table tr:hover {
+  background-color: #f1f1f1; /* Color al pasar el mouse sobre la fila */
+}
+
+.styled-table .p-tag {
+  margin: 0; /* Eliminar márgenes de los tags */
 }
 </style>
