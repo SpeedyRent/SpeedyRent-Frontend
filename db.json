@@ -1,0 +1,49 @@
+{
+  "vehicles": [
+    {
+      "id": 2,
+      "brand": "Ford",
+      "model": "Mustang",
+      "year": 2018,
+      "rate": 45,
+      "description": "Deportivo clásico americano con gran potencia y estilo.",
+      "images": []
+    },
+    {
+      "id": 3,
+      "brand": "Tesla",
+      "model": "Model 3",
+      "year": 2021,
+      "rate": 60,
+      "description": "Vehículo eléctrico de alta tecnología con conducción autónoma.",
+      "images": []
+    },
+    {
+      "id": 4,
+      "brand": "Honda",
+      "model": "Civic",
+      "year": 2019,
+      "rate": 30,
+      "description": "Compacto con excelente eficiencia de combustible y comodidad.",
+      "images": []
+    },
+    {
+      "id": 5,
+      "brand": "BMW",
+      "model": "X5",
+      "year": 2020,
+      "rate": 70,
+      "description": "SUV de lujo con alto rendimiento y características avanzadas.",
+      "images": []
+    },
+    {
+      "brand": "feafa",
+      "model": "aefa",
+      "year": 2024,
+      "rate": 323,
+      "description": "gsegegsegsegsegfse",
+      "images": [],
+      "id": 6
+    }
+  ]
+}
