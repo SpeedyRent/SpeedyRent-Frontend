@@ -1,6 +1,6 @@
 <template>
   <div class="search-vehicles">
-    <h1>Busca de vehículos para rentar</h1>
+    <h1>Busqueda de vehículos para rentar</h1>
 
     <!-- Filtros de búsqueda -->
     <div class="filters">
