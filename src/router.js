@@ -12,6 +12,7 @@ import ListVehicle from '@/contexts/learning/components/vehicles/list-vehicle.vu
 import EditVehicle from '@/contexts/learning/components/vehicles/edit-vehicle.vue'
 import FormVehicle from '@/contexts/learning/components/vehicles/form-vehicle.vue'
 import DetailsVehicle from '@/contexts/learning/components/vehicles/details-vehicle.vue'
+import UserProfile from '@/contexts/security/components/user-account.component.vue';
 
 const routes = [
   { path: '/', component: LoginForm , name:'/'},
@@ -27,7 +28,8 @@ const routes = [
   {path: '/ListVehicles', component: ListVehicle, name: 'VehicleList' },
   {path: '/EditVehicle/:id', component: EditVehicle, name: 'EditVehicle', props:true },
   {path: '/AddVehicle', component: FormVehicle, name: 'AddVehicle' },
-  {path: '/DetailsVehicle/:id', component: DetailsVehicle, name: 'VehicleDetails',props:true }
+  {path: '/DetailsVehicle/:id', component: DetailsVehicle, name: 'VehicleDetails',props:true },
+  { path: '/profile', component: UserProfile, name: 'UserProfile' }
 ]
 
 const router = createRouter({
