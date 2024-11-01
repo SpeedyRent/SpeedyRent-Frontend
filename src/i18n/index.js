@@ -8,8 +8,8 @@ const messages = {
 };
 
 const i18n = createI18n({
-  locale: 'es',
-  fallbackLocale: 'en',
+  locale: 'en',
+  fallbackLocale: 'es',
   messages,
 });
 

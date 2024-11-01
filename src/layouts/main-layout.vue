@@ -14,6 +14,7 @@ import TheHeader from '@/layouts/the-header.vue'
 </template>
 
 <style scoped>
+
 .layout {
   display: flex;
   flex-direction: column;
@@ -22,22 +23,19 @@ import TheHeader from '@/layouts/the-header.vue'
   position: absolute;
   left: 0;
   top: 0;
-  padding:5px;
-
 }
 .main-content {
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex: 1;
 }
 .content{
   display: flex;
   flex: 1;
-  padding: 10px; /* Espaciado interno */
-  flex-wrap: wrap; /* Ajusta el contenido al tamaño de la pantalla */
-  background-color: #f4f4f4; /* Color de fondo */
-  gap: 5vh; /* Espaciado entre elementos */
-  justify-content: center; /* Centra los elementos */
+  padding: 5px;
+  flex-wrap: wrap;
+  gap: 5vh;
+  justify-content: center;
   align-content: center;
   background-color: white;
 }

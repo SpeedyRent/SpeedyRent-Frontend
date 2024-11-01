@@ -1,0 +1,369 @@
+{
+  "tenants": [
+    {
+      "id": "41e2",
+      "tenant_id": "09f7",
+      "request": [
+        "3f6c"
+      ]
+    },
+    {
+      "id": "f5da",
+      "tenant_id": "5175",
+      "request": [
+        "7533",
+        "03f0"
+      ]
+    },
+    {
+      "id": "2985",
+      "tenant_id": "6559",
+      "request": [
+        "b02a",
+        "bfdd",
+        "1d90",
+        "c19e",
+        "f0d9"
+      ]
+    },
+    {
+      "id": "2c9e",
+      "tenant_id": "3394",
+      "request": []
+    }
+  ],
+  "requests": [
+    {
+      "id": "7533",
+      "car_id": "cd5c",
+      "photo_Car": "https://i.postimg.cc/NMQc0BLf/image.png",
+      "from": "29/10/2024",
+      "to": "5/11/2024",
+      "total_days": 7,
+      "total_mount": 175,
+      "pick_up_time": "9:30:52",
+      "return_time": "20:30:52",
+      "status": "Approved",
+      "contract": "Approved"
+    },
+    {
+      "id": "b02a",
+      "car_id": "bb16",
+      "photo_Car": "https://i.postimg.cc/R0987Gmg/image.png",
+      "from": "30/10/2024",
+      "to": "2/11/2024",
+      "total_days": 3,
+      "total_mount": 105,
+      "pick_up_time": "5:40:42",
+      "return_time": "18:40:42",
+      "status": "Approved",
+      "contract": "Approved"
+    },
+    {
+      "id": "bfdd",
+      "car_id": "29f5",
+      "photo_Car": "https://i.postimg.cc/4xRFGwYX/image.png",
+      "from": "19/11/2024",
+      "to": "22/11/2024",
+      "total_days": 3,
+      "total_mount": 150,
+      "pick_up_time": "19:42:57",
+      "return_time": "7:47:57",
+      "status": "Approved",
+      "contract": "Approved"
+    },
+    {
+      "id": "1d90",
+      "car_id": "bb16",
+      "photo_Car": "https://i.postimg.cc/R0987Gmg/image.png",
+      "from": "12/12/2024",
+      "to": "14/12/2024",
+      "total_days": 2,
+      "total_mount": 70,
+      "pick_up_time": "0:50:09",
+      "return_time": "0:50:09",
+      "status": "Rejected",
+      "contract": "Rejected"
+    },
+    {
+      "id": "03f0",
+      "car_id": "29f5",
+      "photo_Car": "https://i.postimg.cc/4xRFGwYX/image.png",
+      "from": "4/11/2024",
+      "to": "11/11/2024",
+      "total_days": 7,
+      "total_mount": 350,
+      "pick_up_time": "12:50:08",
+      "return_time": "16:00:08",
+      "status": "Pendient",
+      "contract": "Pendient"
+    },
+    {
+      "id": "f0d9",
+      "car_id": "cd5c",
+      "photo_Car": "https://i.postimg.cc/NMQc0BLf/image.png",
+      "from": "30/10/2024",
+      "to": "31/10/2024",
+      "total_days": 1,
+      "total_mount": 25,
+      "pick_up_time": "11:45:40",
+      "return_time": "15:44:40",
+      "status": "Pendient",
+      "contract": "Pendient"
+    },
+    {
+      "id": "3f6c",
+      "car_id": "9e48",
+      "photo_Car": "https://i.postimg.cc/zB44gNGg/image.png",
+      "from": "29/10/2024",
+      "to": "31/10/2024",
+      "total_days": 2,
+      "total_mount": 30,
+      "pick_up_time": "16:08:04",
+      "return_time": "16:06:04",
+      "status": "Pendient",
+      "contract": "Pendient"
+    }
+  ],
+  "owners": [
+    {
+      "id": "6d33",
+      "owner_id": "09f7",
+      "vehicles": [
+        "cd5c",
+        "bb16",
+        "29f5",
+        "e013",
+        "0c8f"
+      ]
+    },
+    {
+      "id": "7e50",
+      "owner_id": "5175",
+      "vehicles": [
+        "9e48"
+      ]
+    },
+    {
+      "id": "d88e",
+      "owner_id": "6559",
+      "vehicles": [
+        "302e"
+      ]
+    },
+    {
+      "id": "d98e",
+      "owner_id": "3394",
+      "vehicles": [
+        "cm7c",
+        "cm8c",
+        "cm9c"
+      ]
+    }
+  ],
+  "vehicles": [
+    {
+      "id": "cd5c",
+      "contract": "accepted",
+      "brand": "Toyota",
+      "model": "Corolla",
+      "year": 2015,
+      "rate": 25,
+      "description": "Este auto es muy limpio y ordenado, cuenta con cuatro asientos cómodos y un maletero espacioso. Su motor eficiente ofrece un rendimiento excelente en la ciudad y en carretera. Además, su sistema de entretenimiento incluye conectividad Bluetooth y pantalla táctil.",
+      "location": "Urb:Los naranjos mz x3 lt 31",
+      "photos": [
+        "https://i.postimg.cc/NMQc0BLf/image.png",
+        "https://i.postimg.cc/J0nCbxbf/image.png",
+        "https://i.postimg.cc/FzB5GSp7/image.png"
+      ]
+    },
+    {
+      "id": "bb16",
+      "contract": "accepted",
+      "brand": "Ford",
+      "model": "Mustang",
+      "year": 2018,
+      "rate": 35,
+      "description": "Con capacidad para cinco personas y un interior amplio y bien organizado. Equipado con tecnología de seguridad avanzada y un sistema de navegación intuitivo, asegura un viaje seguro y placentero.",
+      "location": "Urb:Los naranjos mz x3 lt 31",
+      "photos": [
+        "https://i.postimg.cc/R0987Gmg/image.png",
+        "https://i.postimg.cc/j5SF95LN/image.png",
+        "https://i.postimg.cc/j53Frb71/image.png"
+      ]
+    },
+    {
+      "id": "29f5",
+      "contract": "accepted",
+      "brand": "Honda",
+      "model": "Civic",
+      "year": 2020,
+      "rate": 50,
+      "description": "Este coupé deportivo tiene un diseño elegante y aerodinámico, con capacidad para dos asientos y un interior de lujo. Su potente motor proporciona una aceleración impresionante, ideal para quienes disfrutan de la velocidad",
+      "location": "Urb:Los naranjos mz x3 lt 31",
+      "photos": [
+        "https://i.postimg.cc/4xRFGwYX/image.png",
+        "https://i.postimg.cc/6TJz955M/image.png",
+        "https://i.postimg.cc/vZMFhGL7/image.png"
+      ]
+    },
+    {
+      "id": "9e48",
+      "contract": "accepted",
+      "brand": "Chevrolet",
+      "model": "Camaro",
+      "year": 2021,
+      "rate": 15,
+      "description": "Auto muy bueno y limpio , cuenta con ventana escurridiza en la parte superior del auto",
+      "location": "Urb:Los naranjos mz x3 lt 31",
+      "photos": [
+        "https://i.postimg.cc/zB44gNGg/image.png",
+        "https://i.postimg.cc/j2Nm61Dk/image.png",
+        "https://i.postimg.cc/y6SMzDLX/image.png"
+      ]
+    },
+    {
+      "id": "e013",
+      "contract": "accepted",
+      "brand": "Audi A1",
+      "model": "Sportback",
+      "year": 2023,
+      "rate": 60,
+      "description": "Buen rendimiento y comodidad",
+      "location": "Urb:Los naranjos mz x3 lt 31",
+      "photos": [
+        "https://cdn.nwi-ms.com/media/at/A/mc/GBH0PC23/model/19front.png?F=B4B4&P=YM&M=&size=S&flag=transparent",
+        "https://ireland.apollo.olxcdn.com/v1/files/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmbiI6ImF3YzQ0YzRxZzI2bC1PVE9NT1RPUEwifQ.8o4xKxpPzHbyxZMttoosOolDF7CpbrY0DBuV1Njff6U/image;s=5120x0;q=80",
+        "https://web21st.imgix.net/assets/images/new-vehicles/audi/audi-a1-sportback-sport.png"
+      ]
+    },
+    {
+      "id": "0c8f",
+      "contract": "accepted",
+      "brand": "Sedán",
+      "model": "Audi A3",
+      "year": 2016,
+      "rate": 60,
+      "description": "auto compacto, elegante y deportivo, con tecnología avanzada y un interior cómodo y bien equipado.",
+      "location": "Urb:Los naranjos mz x3 lt 31",
+      "photos": [
+        "https://acroadtrip.blob.core.windows.net/catalogo-imagenes/xl/RT_V_05a99b23df054e0eb2c93b3885eaa13e.jpg",
+        "https://cdn.buttercms.com/7lMaKNfQDq2CYM0oE87w",
+        "https://blog.rentcars.com/wp-content/uploads/2023/05/blog.rentcars.com-los-mejores-autos-para-viajar-en-mexico7.webp",
+        "https://www.baccredomatic.com/sites/default/files/styles/real_estate_1000_560_/public/2024-03/A4.JPG.webp?itok=fpKwjgx3"
+      ]
+    },
+    {
+      "id": "302e",
+      "contract": "accepted",
+      "brand": "Toyota",
+      "model": "Yaris",
+      "year": 2017,
+      "rate": 55,
+      "description": "Es ideal para la ciudad, con un diseño práctico y buen rendimiento de combustible",
+      "location": "Urb:Los naranjos mz x3 lt 31",
+      "photos": [
+        "https://www.toyotaperu.com.pe/toyota-a-gas/assets/img/modelo/yaris-auto-glp.jpg",
+        "https://norautos.com/chiclayo/wp-content/uploads/2022/09/1613_1616_YARIS_10_PLATA_PERLADO.jpg",
+        "https://tcl-s3-bucket.s3.amazonaws.com/web/media/images/YarisPlata_Mesa_de_trabajo_1-06.2e16d0ba.fill-960x540.png",
+        "https://www.toyotaperu.com.pe/sites/default/files/Yaris_Exterior_06_Parachoque.jpg"
+      ]
+    },
+    {
+      "id": "cm7c",
+      "contract": "accepted",
+      "brand": "Kia",
+      "model": "Rio",
+      "year": 2015,
+      "rate": 35,
+      "description": "Un auto compacto y versátil, conocido por su buen consumo de combustible y confort para ciudad y carretera.",
+      "location": "Av. Javier Prado Este 4200, San Borja",
+      "photos": [
+        "https://acroadtrip.blob.core.windows.net/catalogo-imagenes/m/RT_V_ced5b697117a477d8b8dff43f6865169.jpg",
+        "https://acroadtrip.blob.core.windows.net/catalogo-imagenes/m/RT_V_4d078d07c8154bb3866e1e6baf707a23.jpg",
+        "https://acroadtrip.blob.core.windows.net/catalogo-imagenes/m/RT_V_c43543262a2e4d57848a3fee8d170d50.jpg",
+        "https://acroadtrip.blob.core.windows.net/catalogo-imagenes/m/RT_V_15e663e7fe274819801e22d7de26cfbf.jpg"
+      ]
+    },
+    {
+      "id": "cm8c",
+      "contract": "accepted",
+      "brand": "Chevrolet",
+      "model": "Spark",
+      "year": 2018,
+      "rate": 45,
+      "description": "Ideal para la ciudad, es un auto pequeño, económico y fácil de estacionar, con diseño moderno y práctico.",
+      "location": "Av. Javier Prado Este 4200, San Borja",
+      "photos": [
+        "https://acroadtrip.blob.core.windows.net/catalogo-imagenes/m/RT_V_24cfc727829f4c48835acd1c843d94f1.jpg",
+        "https://acroadtrip.blob.core.windows.net/catalogo-imagenes/m/RT_V_81b276d062f241f9807c95f3f169a836.jpg",
+        "https://acroadtrip.blob.core.windows.net/catalogo-imagenes/m/RT_V_955db6b0bcad4f6687290e08b4bd0538.jpg",
+        "https://acroadtrip.blob.core.windows.net/catalogo-imagenes/m/RT_V_501e6c9d8b7f4ed893611885a81888ad.jpg",
+        "https://acroadtrip.blob.core.windows.net/catalogo-imagenes/m/RT_V_6c1fb44cf36147e391a9a157290be5f1.jpg"
+      ]
+    },
+    {
+      "id": "cm9c",
+      "contract": "accepted",
+      "brand": "Nissan",
+      "model": "Sentra",
+      "year": 2018,
+      "rate": 50,
+      "description": "Confiable y espacioso, destaca por su rendimiento eficiente y tecnología de seguridad avanzada.",
+      "location": "Av. Javier Prado Este 4200, San Borja",
+      "photos": [
+        "https://acroadtrip.blob.core.windows.net/catalogo-imagenes/m/RT_V_0c7166c16ff74073b65851f7f0b360ed.jpg",
+        "https://acroadtrip.blob.core.windows.net/catalogo-imagenes/m/RT_V_6829bfe284c1487badb6b14fcd518a4e.jpg",
+        "https://acroadtrip.blob.core.windows.net/catalogo-imagenes/m/RT_V_73ca29e302504a81a6719351f0b4a227.jpg",
+        "https://acroadtrip.blob.core.windows.net/catalogo-imagenes/m/RT_V_22d256d4b95a40f2b423225bb8eff1c9.jpg",
+        "https://acroadtrip.blob.core.windows.net/catalogo-imagenes/m/RT_V_be3331ef1f3c48738e40f608a89633ec.jpg"
+      ]
+    }
+  ],
+  "User": [
+    {
+      "id": "09f7",
+      "dni": 76842596,
+      "dni_image": "https://i.postimg.cc/rsJG5PGJ/image.png",
+      "name": "Javier Morales",
+      "phone": "932151545",
+      "photo_user": "https://i.postimg.cc/FHKdBRmN/image.png",
+      "email": "JavierMorales@gmail.com",
+      "password": "123456789",
+      "driver_license": "https://i.postimg.cc/0NTCvm2p/image.png"
+    },
+    {
+      "id": "5175",
+      "dni": 76131528,
+      "dni_image": "https://i.postimg.cc/GhLxbbrS/image.png",
+      "name": "Valeria Callupe",
+      "phone": 985476152,
+      "photo_user": "https://i.postimg.cc/sXC5qrwm/image.png",
+      "email": "ValeriaCallupe@gmail.com",
+      "password": "123456",
+      "driver_license": "https://i.postimg.cc/Px1Q5xP0/image.png"
+    },
+    {
+      "id": "6559",
+      "dni": 84592574,
+      "dni_image": "https://i.postimg.cc/GhLxbbrS/image.png",
+      "name": "Daniela Ríos",
+      "phone": 985145256,
+      "photo_user": "https://i.postimg.cc/KjZBc5Xg/image.png",
+      "email": "DanielaRios@gmail.com",
+      "password": "123456",
+      "driver_license": "https://i.postimg.cc/Px1Q5xP0/image.png"
+    },
+    {
+      "id": "3394",
+      "dni": 87541284,
+      "dni_image": "https://i.postimg.cc/rsJG5PGJ/image.png",
+      "name": "Carlos Gutiérrez",
+      "phone": 987987987,
+      "photo_user": "https://i.postimg.cc/YCjNm8v6/image.png",
+      "email": "CarlosGutierrez@gmail.com",
+      "password": "123456",
+      "driver_license": "https://i.postimg.cc/0NTCvm2p/image.png"
+    }
+  ]
+}

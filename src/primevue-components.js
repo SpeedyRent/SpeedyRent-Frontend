@@ -19,8 +19,24 @@ import FileUpload from 'primevue/fileupload';
 
 import './assets/main.css'
 import 'primeicons/primeicons.css'
+import  Ripple  from 'primevue/ripple'
 
+import Galleria from 'primevue/galleria';
+import Stepper from 'primevue/stepper';
+import StepList from 'primevue/steplist';
+import StepPanels from 'primevue/steppanels';
+import StepItem from 'primevue/stepitem';
+import Step from 'primevue/step';
+import StepPanel from 'primevue/steppanel';
 
+import Accordion from 'primevue/accordion';
+import AccordionPanel from 'primevue/accordionpanel';
+import AccordionHeader from 'primevue/accordionheader';
+import AccordionContent from 'primevue/accordioncontent';
+import Checkbox from 'primevue/checkbox';
+
+import RadioButton from 'primevue/radiobutton';
+import InputMask from 'primevue/inputmask';
 
 export default (app) => {
   app.use(PrimeVue, {
@@ -44,4 +60,23 @@ export default (app) => {
   app.component('pv-input-number', InputNumber)
   app.component('pv-textarea', Textarea)
   app.component('pv-fileupload', FileUpload)
+
+  app.component('pv-galleria', Galleria)
+  app.component('pv-stepper', Stepper)
+  app.component('pv-step-list', StepList)
+  app.component('pv-step-panels', StepPanels)
+  app.component('pv-step-item', StepItem)
+  app.component('pv-step', Step)
+  app.component('pv-step-panel', StepPanel)
+
+  app.component('pv-accordion', Accordion)
+  app.component('pv-accordion-panel', AccordionPanel)
+  app.component('pv-accordion-header', AccordionHeader)
+  app.component('pv-accordion-content', AccordionContent)
+  app.component('pv-checkbox', Checkbox)
+
+  app.component('pv-radio-button', RadioButton)
+  app.component('pv-input-mask', InputMask)
+
+  app.directive('ripple', Ripple)
 }

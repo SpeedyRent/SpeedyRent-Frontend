@@ -6,18 +6,13 @@ import {useRoute} from 'vue-router'
 
 const route = useRoute()
 const isLoginPage = computed(()=> route.name === 'login' || route.name === '/')
+const isRegisterPage = computed(()=> route.name === 'register')
 
 </script>
 
 <template>
-  <div v-if="!isLoginPage">
-    <MainLayout />
-    <p>PARTE 1</p>
-  </div>
-  <div v-else>
-    <p>PARTE 2</p>
-    <router-view/>
-  </div>
+  <MainLayout v-if="!isLoginPage && !isRegisterPage" />
+  <router-view v-else />
 </template>
 
 <style scoped>

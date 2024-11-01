@@ -1,97 +1,137 @@
 <template>
-  <div class="login-container">
-    <div class="left-half">
-      <div class="login-box">
-        <div class="logo">
-          <img src="https://i.postimg.cc/50wNP4RM/image.png" alt="Logo">
-          <h2>Bienvenido a SpeedyRent</h2>
-        </div>
-        <form @submit.prevent="handleLogin" class="login-form">
-
-          <label for="email">Correo electrónico</label>
-          <input type="email" id="email" v-model="email" placeholder="Ingresa tu correo" required>
-
-          <label for="password">Contraseña</label>
-          <input type="password" id="password" v-model="password" placeholder="Ingresa tu contraseña" required>
-
-          <div class="form-links">
-            <router-link to="" class="link">¿Olvidaste tu contraseña?</router-link>
-            <router-link to="/register" class="link">Crear cuenta nueva</router-link>
-          </div>
-
-          <button type="submit" class="login-button" as="router-link" to="/home" >Iniciar sesión</button>
-        </form>
+  <div class="Conteiner">
+    <div class="login-box">
+      <div class="logo">
+        <img src="https://i.postimg.cc/50wNP4RM/image.png" alt="Logo">
+        <h2>Welcome to SpeedyRent</h2>
       </div>
-    </div>
-    <div class="right-half">
-      <img src="https://i.postimg.cc/3RCYXLk8/image.png" alt="Imagen" class="login-image">
-    </div>
+      <form class="login-form" >
+        <label for="email">Email Address</label>
+        <input type="email" id="email" v-model="email" placeholder="Enter your email" required>
 
+        <label for="password">Password</label>
+        <input type="password" id="password" v-model="password" placeholder="Enter your password" required>
+
+        <div class="form-links">
+          <router-link to="" class="link">Forgot your password?</router-link>
+          <router-link to="/register" class="link">Create new account</router-link>
+        </div>
+        <pv-button type="submit" class="login-button" @click="handleLogin">Login</pv-button>
+      </form>
+      <p v-if="visible" class="error-message">{{ errorMessage }}</p>
+    </div>
+    <div class="ImagenAuto">
+      <img src="https://i.postimg.cc/QdQGYmFp/image.png" alt="Imagen" class="login-image">
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref , onMounted } from 'vue';
+import { TenantApiServices } from '@/contexts/rentals/services/tenant-api.services.js'
 import { useRouter } from 'vue-router';
-import { UserEntity } from '@/contexts/learning/models/tenant-entity.js'
-import { TenantApiServices } from '@/contexts/learning/services/tenant-api.services.js'
 
+const users = ref([]);
 const email = ref('');
 const password = ref('');
 const errorMessage = ref('');
 const visible = ref(false);
+const tenantApiServices = new TenantApiServices();
 const router = useRouter();
 
-// Instancia del servicio para interactuar con la API
-const tenantService = new TenantApiServices();
+// Cargar usuarios desde el JSON
+onMounted ( async () => {
+  try {
+    const usersData = await tenantApiServices.getAllUsers();
+    users.value = usersData.data;
+
+  } catch (error) {
+    console.error('Error fetching users:', error);
+  }
+});
 
 const handleLogin = async () => {
-  // Crear un nuevo UserEntity solo con email y password
-  const tenant = UserEntity.fromLoginData(email.value, password.value);
-
   try {
-    const data = await tenantService.login(tenant);
-    console.log('Login exitoso', data);
-    await router.push('/home-owner');
-  } catch (error) {
-    if (error.message.includes('Correo o contraseña incorrectos')) {
-      errorMessage.value = 'Credenciales incorrectas. Verifica tu correo y contraseña.';
-    } else {
-      errorMessage.value = 'Ocurrió un error al intentar iniciar sesión.';
+    // Verificar si ya hemos cargado los usuarios
+    if (users.value.length === 0) {
+      throw new Error('No users loaded. Please try again later.');
     }
-    visible.value = true;
+
+    // Buscar el usuario que coincida con el email y la contraseña
+    const user = users.value.find(u => u.email === email.value && u.password === password.value);
+
+    if (!user) {
+      // Si el usuario no existe o la contraseña es incorrecta
+      throw new Error('Invalid email or password');
+    }
+
+    // Login exitoso
+    console.log('Login successful', user);
+    console.log('userId', user.id);
+    localStorage.setItem('userId', user.id);
+
+    // Redirigir solo si el login es exitoso
+    router.push('/home');
+  } catch (error) {
+    if (error.message === 'Invalid email or password') {
+      errorMessage.value = 'Invalid email or password. Please try again.';
+    } else {
+      errorMessage.value = 'An error occurred while trying to log in.';
+    }
+    visible.value = true; // Mostrar el mensaje de error
   }
 };
+
 </script>
 
-<style scoped>
-.login-container {
-  display: flex;
-  height: 100vh;
-  background-color: #f5f5f5;
-}
 
-.left-half {
-  flex: 1;
+<style scoped>
+
+.Conteiner {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffffff;
-  padding: 2rem;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 100vh;
+  width: 100vw;
+  padding: 10px; /* Evita que el contenido se pegue a los bordes */
+  position: absolute;
+  top:0;
+  left: 0;
 }
 
 .login-box {
-  background-color: #ffffff;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  align-items: center; /* Centra la imagen verticalmente */
+  justify-content: center; /* Centra verticalmente los elementos */
   max-width: 400px;
+  min-height: 300px;
   width: 100%;
+  height: 100%;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: 0 auto; /* Centra horizontalmente */
+  display: flex;
+  flex-direction: column; /* Alinea el contenido internamente */
 }
 
 .logo {
   text-align: center;
   margin-bottom: 2rem;
+}
+
+.ImagenAuto {
+  display: flex;
+  justify-content: center; /* Centra la imagen horizontalmente */
+  align-items: center; /* Centra la imagen verticalmente */
+  width: 100%; /* El ancho se ajustará al 100% del contenedor padre */
+  height: 100%; /* La altura fija que deseas para el contenedor */
+}
+
+.login-image {
+  width: 100%; /* La imagen ocupará el 100% del ancho del contenedor */
+  height: 100%; /* La imagen ocupará el 100% de la altura del contenedor */
+  object-fit: cover; /* Ajustará la imagen al contenedor sin deformarla */
 }
 
 .logo img {
@@ -101,113 +141,69 @@ const handleLogin = async () => {
   margin-bottom: 1rem;
 }
 
-h2 {
-  font-size: 1.8rem;
-  color: #333;
-}
-
 .login-form {
-  width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-label {
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-  color: #555;
+.login-form label {
+  margin-top: 10px;
 }
 
-input {
-  padding: 0.75rem;
-  margin-bottom: 1.5rem;
-  border: 1px solid #ddd;
+.login-form input {
+  padding: 10px;
+  margin-top: 5px;
   border-radius: 5px;
-  font-size: 1rem;
-  outline: none;
-  transition: border-color 0.3s;
-}
-
-input:focus {
-  border-color: #007bff;
+  border: 1px solid #ccc;
 }
 
 .form-links {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1.5rem;
+  margin-top: 15px;
 }
 
-.link {
-  color: #007bff;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-.link:hover {
-  text-decoration: underline;
+.form-links .link:hover {
+  background-color: transparent; /* Evita cualquier cambio de fondo */
 }
 
 .login-button {
-  background-color: #007bff;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #007BFF;
   color: white;
-  padding: 0.75rem;
   border: none;
   border-radius: 5px;
-  font-size: 1.1rem;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
-
-.login-button:hover {
-  background-color: #0056b3;
-}
-
-.right-half {
-  flex: 1;
-}
-
-.login-image {
-  width: 100%;
-  height: 100vh;
-  object-fit: cover;
-}
-
+/* Estilos responsive */
 @media (max-width: 768px) {
-  .login-container {
-    flex-direction: column;
+  .Conteiner {
+    flex-direction: column; /* Cambia la dirección a vertical */
   }
 
-  .left-half, .right-half {
-    width: 100%;
+  .login-image {
+    max-width: 100%;
     height: auto;
+    margin-top: 20px;
   }
 
-  .right-half {
-    display: none;
-  }
-
-  .left-half {
-    box-shadow: none;
-    padding: 2rem;
+  .login-box {
+    width: 100%;
+    max-width: 90%;
+    padding: 20px;
   }
 }
 
 @media (max-width: 480px) {
-  .left-half {
-    padding: 1rem;
+  .login-box {
+    padding: 10px;
   }
 
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  .login-form {
-    max-width: 100%;
-  }
-
-  .input {
-    font-size: 0.9rem;
+  .login-button {
+    padding: 8px;
   }
 }
+
+
 </style>
