@@ -9,11 +9,9 @@
         :transitionInterval="3000"
         showThumbnails
       >
-        <!-- Plantilla para cada imagen principal -->
         <template #item="slotProps">
           <img :src="slotProps.item" alt="Vehicle Image" class="galleria-image" />
         </template>
-        <!-- Plantilla para cada miniatura -->
         <template #thumbnail="slotProps">
           <img :src="slotProps.item" alt="Vehicle Thumbnail" class="thumbnail-image" />
         </template>
@@ -51,7 +49,6 @@ const router = useRouter();
 const vehicleId = ref(route.params.id);
 const vehicleDetails = ref(null);
 
-// Función para obtener los detalles del vehículo
 const fetchVehicleDetails = async () => {
   try {
     const response = await tenantService.getVehicleById(vehicleId.value);
@@ -88,24 +85,24 @@ onMounted(() => {
 }
 
 .custom-content {
-  background-color: #eae7e7; /* Color de fondo */
-  padding: 8px;             /* Espaciado interno */
-  border-radius: 6px;        /* Bordes redondeados */
+  background-color: #eae7e7;
+  padding: 8px;
+  border-radius: 6px;
 }
 
 .custom-content p strong {
-  font-weight: bold; /* Aplica negrita al texto dentro de <strong> */
+  font-weight: bold;
 }
 
 .galleria-image {
-  width: 260px; /* Ajusta el tamaño según tus necesidades */
+  width: 260px;
   height: 160px;
   object-fit: cover;
 }
 
 
 .thumbnail-image {
-  width: 40px; /* Tamaño de las miniaturas */
+  width: 40px;
   height: 20px;
   object-fit: cover;
 }
