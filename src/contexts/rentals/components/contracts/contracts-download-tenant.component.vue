@@ -101,7 +101,6 @@ fetchData();
 const downloadPDF = () => {
   const element = document.getElementById('content');
 
-  // Configuración de opciones
   const options = {
     margin: 1,
     filename: 'contrato_alquiler.pdf',
@@ -110,10 +109,9 @@ const downloadPDF = () => {
     jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
   };
 
-  // Generar y descargar el PDF
   html2pdf()
     .from(element)
-    .set(options) // Asegúrate de usar 'options' aquí
+    .set(options)
     .save();
 };
 
