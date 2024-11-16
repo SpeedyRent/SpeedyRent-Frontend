@@ -67,7 +67,6 @@ const tenantApiServices = new TenantApiServices();
 const userDetails = ref(null);
 const showSteps = ref(null);
 
-// Función para seleccionar el rol y mostrar la sección de pasos
 function selectRole(role) {
   showSteps.value = role;
 }
@@ -139,39 +138,39 @@ h2{
   padding: 20px;
 }
 .surprise-button {
-  padding: 10px 20px; /* Espaciado dentro del botón */
-  background-color: #ffcc00; /* Color de fondo del botón */
-  color: #fff; /* Color del texto */
-  border: none; /* Sin borde */
-  border-radius: 5px; /* Bordes redondeados */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-  font-size: 1em; /* Tamaño de fuente del botón */
-  transition: background-color 0.3s, transform 0.3s; /* Transición suave */
+  padding: 10px 20px; 
+  background-color: #ffcc00; 
+  color: #fff; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  font-size: 1em; 
+  transition: background-color 0.3s, transform 0.3s; 
 }
 .surprise-button:hover {
-  background-color: #e0b800; /* Color de fondo al pasar el cursor */
-  transform: scale(1.05); /* Efecto de aumento al pasar el cursor */
+  background-color: #e0b800; 
+  transform: scale(1.05); 
 }
 .surprise-section {
-  display: flex; /* Utiliza flexbox para alinear la imagen y el texto */
-  align-items: center; /* Centra verticalmente los elementos */
-  margin-top: 20px; /* Espacio superior */
-  padding: 10px; /* Espaciado interior */
-  background-color: #f0f0f0; /* Color de fondo suave */
-  border-radius: 8px; /* Bordes redondeados */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
+  display: flex; 
+  align-items: center; 
+  margin-top: 20px; 
+  padding: 10px; 
+  background-color: #f0f0f0; 
+  border-radius: 8px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
 }
 .surprise-image {
-  margin-right: 20px; /* Espacio entre la imagen y el texto */
+  margin-right: 20px; 
 }
 .surprise-image img {
-  width: 50px; /* Ancho de la imagen */
-  height: 50px; /* Alto de la imagen */
+  width: 50px; 
+  height: 50px; 
 }
 .final-note {
-  font-size: 1.1em; /* Tamaño de fuente más grande */
-  color: #333; /* Color del texto */
-  text-align: left; /* Alineación del texto */
+  font-size: 1.1em; 
+  color: #333; 
+  text-align: left; 
 }
 
 
