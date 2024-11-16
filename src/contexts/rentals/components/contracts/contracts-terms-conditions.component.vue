@@ -45,21 +45,18 @@
 <script setup>
 import { ref, defineProps, defineEmits, watch } from 'vue';
 
-// Recibimos la propiedad para el estado del checkbox
 const props = defineProps(['modelValue']);
 // eslint-disable-next-line vue/valid-define-emits
-const emit = defineEmits(); // Definimos emit
+const emit = defineEmits();
 
 const isChecked = ref(props.modelValue);
 
-// Watcher para sincronizar el estado del checkbox
 watch(isChecked, (newValue) => {
-  emit('update:modelValue', newValue); // Emitimos el nuevo valor hacia el padre
+  emit('update:modelValue', newValue);
 });
 
-// Sincronizamos el valor inicial con el prop al montarse el componente
 watch(() => props.modelValue, (newValue) => {
-  isChecked.value = newValue; // Actualiza el estado interno si cambia el prop
+  isChecked.value = newValue;
 });
 </script>
 
