@@ -38,18 +38,17 @@ const requestPrice = ref(null)
 const requestTime = ref(null)
 let tenantId = ref('')
 
-// Variables para las fechas y total de días
 const startDate = ref('')
 const endDate = ref('')
-const totalDays = ref(0) // Variable para total de días
+const totalDays = ref(0)
 
 const route = useRoute()
 const vehicleId = ref(route.params.id)
 
 const updateDaysTotal = (days) => {
-  totalDays.value = days // Actualiza totalDays
+  totalDays.value = days
   if (requestPrice.value) {
-    requestPrice.value.updateDaysTotal(days) // Llama a la función para actualizar daysTotal en RequestPrice
+    requestPrice.value.updateDaysTotal(days)
   }
 }
 
@@ -85,33 +84,24 @@ const handleButtonClick = async () => {
 
   const response = await tenantApi.createRequest(requestData)
   const newRequestId = response.data.id
-
-  // Obtener el ID del propietario logueado
   const loggedInUserId = localStorage.getItem('userId')
 
   const tenantsResponse = await tenantApi.getAllTenants()
   console.log('data del tenants', tenantsResponse.data)
-
-  // Encuentra el propietario cuyo owner_id coincide con loggedInUserId
   const foundTenant = tenantsResponse.data.find((o) => o.tenant_id === loggedInUserId)
-
-  // Actualizar el arreglo de vehículos del propietario
 
   loading.value = true
 
   if (foundTenant) {
-    foundTenant.request.push(newRequestId) // Agregar nuevo vehículo al arreglo
+    foundTenant.request.push(newRequestId)
 
-    // Obtener el ID del propietario logueado
     const loggedInUserId = localStorage.getItem('userId')
 
     const updateData = {
-      id: foundTenant.id, // Incluye el id del owner
-      tenant_id: loggedInUserId, // Incluye el owner_id
-      request: foundTenant.request // Mantiene el arreglo de request actualizado
+      id: foundTenant.id,
+      tenant_id: loggedInUserId,
+      request: foundTenant.request
     }
-
-    // Actualiza el propietario con la estructura correcta
     await tenantApi.updateTenantRequest(foundTenant.id, updateData)
 
     console.log('despues de estar en el owner id')
@@ -122,7 +112,6 @@ const handleButtonClick = async () => {
 
   loading.value = false
 
-  //cambios para que el id para a la tabla
   router.push({ path: '/requestTable', query: { id: tenantId } })
 }
 
@@ -137,19 +126,19 @@ const load = () => {
 
 <style scoped>
 h2 {
-  font-size: 2rem; /* Tamaño base */
+  font-size: 2rem;
   color: #2c3e50;
 }
 
 @media (min-width: 768px) {
   h2 {
-    font-size: 3rem; /* Tamaño para pantallas medianas */
+    font-size: 3rem;
   }
 }
 
 @media (min-width: 1024px) {
   h2 {
-    font-size: 4rem; /* Tamaño para pantallas grandes */
+    font-size: 4rem;
   }
 }
 
