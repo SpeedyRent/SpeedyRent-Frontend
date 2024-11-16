@@ -8,7 +8,7 @@
       <pv-step-panels>
         <pv-step-panel v-slot="{ activateCallback }" value="1">
           <div class="ConteinerI">
-            <ContractsTermsConditions v-model="isChecked" /> <!-- Pasamos el estado del checkbox -->
+            <ContractsTermsConditions v-model="isChecked" />
           </div>
           <div class="botonNext" style="display: flex; justify-content: flex-end;">
             <pv-button :label="$t('next')" icon="pi pi-arrow-right" @click="activateCallback('2')" :disabled="!isChecked" />
@@ -41,7 +41,7 @@ const route = useRoute();
 const requestId = ref(route.params.id);
 const tenantApiServices = new TenantApiServices();
 const request = ref(null);
-const isChecked = ref(false); // Agregamos el estado del checkbox
+const isChecked = ref(false);
 
 const someRequestId = requestId.value;
 console.log("id que pasara al otro componente",someRequestId)
@@ -50,7 +50,7 @@ const finishContract = async () => {
   const dataRequest = await tenantApiServices.getRequestById(requestId.value);
   request.value = dataRequest.data;
   request.value.contract = "Approved";
-  await tenantApiServices.updateTenantDates(request.value.id, { contract: request.value.contract }); // Actualiza en la API
+  await tenantApiServices.updateTenantDates(request.value.id, { contract: request.value.contract });
   router.push({name:'RequestTable'});
 };
 
