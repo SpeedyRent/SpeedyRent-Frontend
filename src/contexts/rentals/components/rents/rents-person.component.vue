@@ -39,7 +39,7 @@ const tenants = ref([]);
 const findRequesterCache = ref({});
 
 const findRequester = (request) => {
-  if (!request) return null; // Comprobar si request es nulo
+  if (!request) return null;
   if (findRequesterCache.value[request.id]) {
     return findRequesterCache.value[request.id];
   }
@@ -48,7 +48,7 @@ const findRequester = (request) => {
 
   if (tenant) {
     const requester = requesters.value.find(user => user.id === tenant.tenant_id);
-    findRequesterCache.value[request.id] = requester || null; // Cachear el resultado, asegurando que sea null si no se encuentra
+    findRequesterCache.value[request.id] = requester || null;
     return requester;
   }
 
@@ -60,8 +60,8 @@ const requesterDetails = computed(() => {
     const requester = findRequester(personUser);
     return {
       id: personUser.id,
-      name: requester ? requester.name : 'Desconocido', // Proporcionar un valor predeterminado
-      dni: requester ? requester.dni : 'Desconocido', // Proporcionar un valor predeterminado
+      name: requester ? requester.name : 'Desconocido',
+      dni: requester ? requester.dni : 'Desconocido',
       photo: personUser.photo_Car,
     };
   });
@@ -125,9 +125,9 @@ ul {
   list-style-type: none;
 }
 .image-container {
-  width: 100%; /* Anchura completa del contenedor */
-  height: 200px; /* Altura fija para todas las imágenes */
-  overflow: hidden; /* Oculta cualquier desbordamiento */
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -136,6 +136,6 @@ ul {
 .image-container img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ajusta la imagen para que llene todo el espacio */
+  object-fit: cover;
 }
 </style>
