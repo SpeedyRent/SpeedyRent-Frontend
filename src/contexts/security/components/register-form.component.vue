@@ -69,32 +69,31 @@ const driver_license = ref('');
 const error = ref('');
 const tenantApiServices = new TenantApiServices();
 
-// Computed property to check if the form is valid
 const isFormValid = computed(() => {
   return (
     name.value &&
-    phone.value.toString().length === 9 && // Validate phone length
+    phone.value.toString().length === 9 && 
     photo_user.value &&
     email.value &&
     password.value &&
     confirmPassword.value &&
     password.value === confirmPassword.value &&
-    dni.value.toString().length === 8 && // Validate DNI length
-    dni_image.value && // Check if DNI image is uploaded
-    driver_license.value // Check if driver's license is uploaded
+    dni.value.toString().length === 8 && 
+    dni_image.value && 
+    driver_license.value 
   );
 });
 
 const handlePhotoUserUpload = (event) => {
-  photo_user.value = event.target.files[0];  //captura el archivo photo user
+  photo_user.value = event.target.files[0];  
 };
 
 const handleDniUpload = (event) => {
-  dni_image.value = event.target.files[0]; // Captura el archivo del DNI
+  dni_image.value = event.target.files[0]; 
 };
 
 const handleLicenseUpload = (event) => {
-  driver_license.value = event.target.files[0]; // Captura el archivo de la licencia
+  driver_license.value = event.target.files[0]; 
 };
 
 function removeEmptyFields(obj) {
@@ -122,30 +121,25 @@ const handleRegister = async () => {
     email.value,
     password.value,
     dni.value,
-    dni_image.value ? dni_image.value.name : '', // Asigna el nombre del archivo del DNI
-    driver_license.value ? driver_license.value.name : '' // Asigna el nombre del archivo de la licencia
+    dni_image.value ? dni_image.value.name : '', 
+    driver_license.value ? driver_license.value.name : '' 
   );
-  // Limpiar campos vacíos
   newUser = removeEmptyFields(newUser);
 
   try {
     const response = await tenantApiServices.registerUser(newUser);
-    // Accede al ID del usuario creado desde la respuesta
     if (response.data && response.data.id) {
       const userId = response.data.id;
       console.log("User created with ID:", userId);
 
-      // Obtener detalles del usuario
       const dataUser = await tenantApiServices.getUserById(userId);
       userDetails.value = dataUser.data;
-      // Crear tenant con loggedInUserId como tenant_id
       const tenantData = {
         tenant_id: userId,
         request: []
       };
       await tenantApiServices.createTenant(tenantData);
 
-      // Crear owner con loggedInUserId como owner_id
       const ownerData = {
         owner_id: userId,
         vehicles: []
@@ -164,20 +158,18 @@ const handleRegister = async () => {
 };
 
 const validatePhone = () => {
-  // Convertir el número a una cadena y verificar la longitud
   if (phone.value.toString().length !== 9) {
     error.value = 'The phone number must be exactly 9 digits.';
   } else {
-    error.value = ''; // Limpiar el error si la validación pasa
+    error.value = ''; 
   }
 };
 
 const validateDni = () => {
-  // Convertir el número a una cadena y verificar la longitud
   if (dni.value.toString().length !== 8) {
     error.value = 'The dni must be exactly 8 digits.';
   } else {
-    error.value = ''; // Limpiar el error si la validación pasa
+    error.value = ''; 
   }
 };
 
