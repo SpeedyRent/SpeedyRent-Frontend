@@ -39,7 +39,6 @@ const visible = ref(false);
 const tenantApiServices = new TenantApiServices();
 const router = useRouter();
 
-// Cargar usuarios desde el JSON
 onMounted ( async () => {
   try {
     const usersData = await tenantApiServices.getAllUsers();
@@ -52,25 +51,20 @@ onMounted ( async () => {
 
 const handleLogin = async () => {
   try {
-    // Verificar si ya hemos cargado los usuarios
     if (users.value.length === 0) {
       throw new Error('No users loaded. Please try again later.');
     }
 
-    // Buscar el usuario que coincida con el email y la contraseña
     const user = users.value.find(u => u.email === email.value && u.password === password.value);
 
     if (!user) {
-      // Si el usuario no existe o la contraseña es incorrecta
       throw new Error('Invalid email or password');
     }
 
-    // Login exitoso
     console.log('Login successful', user);
     console.log('userId', user.id);
     localStorage.setItem('userId', user.id);
 
-    // Redirigir solo si el login es exitoso
     router.push('/home');
   } catch (error) {
     if (error.message === 'Invalid email or password') {
@@ -78,7 +72,7 @@ const handleLogin = async () => {
     } else {
       errorMessage.value = 'An error occurred while trying to log in.';
     }
-    visible.value = true; // Mostrar el mensaje de error
+    visible.value = true;
   }
 };
 
@@ -89,19 +83,19 @@ const handleLogin = async () => {
 
 .Conteiner {
   display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
+  justify-content: center;
+  align-items: center;
   height: 100vh;
   width: 100vw;
-  padding: 10px; /* Evita que el contenido se pegue a los bordes */
+  padding: 10px;
   position: absolute;
   top:0;
   left: 0;
 }
 
 .login-box {
-  align-items: center; /* Centra la imagen verticalmente */
-  justify-content: center; /* Centra verticalmente los elementos */
+  align-items: center;
+  justify-content: center;
   max-width: 400px;
   min-height: 300px;
   width: 100%;
@@ -110,9 +104,9 @@ const handleLogin = async () => {
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  margin: 0 auto; /* Centra horizontalmente */
+  margin: 0 auto;
   display: flex;
-  flex-direction: column; /* Alinea el contenido internamente */
+  flex-direction: column;
 }
 
 .logo {
@@ -122,16 +116,16 @@ const handleLogin = async () => {
 
 .ImagenAuto {
   display: flex;
-  justify-content: center; /* Centra la imagen horizontalmente */
-  align-items: center; /* Centra la imagen verticalmente */
-  width: 100%; /* El ancho se ajustará al 100% del contenedor padre */
-  height: 100%; /* La altura fija que deseas para el contenedor */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .login-image {
-  width: 100%; /* La imagen ocupará el 100% del ancho del contenedor */
-  height: 100%; /* La imagen ocupará el 100% de la altura del contenedor */
-  object-fit: cover; /* Ajustará la imagen al contenedor sin deformarla */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .logo img {
@@ -164,7 +158,7 @@ const handleLogin = async () => {
 }
 
 .form-links .link:hover {
-  background-color: transparent; /* Evita cualquier cambio de fondo */
+  background-color: transparent;
 }
 
 .login-button {
@@ -176,10 +170,10 @@ const handleLogin = async () => {
   border-radius: 5px;
   cursor: pointer;
 }
-/* Estilos responsive */
+
 @media (max-width: 768px) {
   .Conteiner {
-    flex-direction: column; /* Cambia la dirección a vertical */
+    flex-direction: column;
   }
 
   .login-image {
