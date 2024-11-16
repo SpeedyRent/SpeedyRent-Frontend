@@ -91,7 +91,6 @@ const toggleDropdown = () => {
   showDropdown.value = !showDropdown.value;
 };
 
-// Computed property to determine the button label based on the current language
 const languageLabel = computed(() => (locale.value === 'en' ? 'EN' : 'ES'));
 
 function toggleLanguage() {
