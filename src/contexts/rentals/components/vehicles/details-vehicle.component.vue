@@ -55,11 +55,9 @@ const route = useRoute();
 const router = useRouter();
 const deleteDialogVisible = ref(false);
 
-// Define una referencia para el ID del vehículo
 const vehicleId = ref(route.params.id);
 const vehicleDetails = ref(null);
 
-// Función para obtener los detalles del vehículo
 const fetchVehicleDetails = async () => {
   try {
     const response = await tenantService.getVehicleById(vehicleId.value);
@@ -74,19 +72,18 @@ const editVehicle = (car_id) => {
 };
 
 const confirmDelete = () => {
-  deleteDialogVisible.value = true; // Muestra el diálogo de confirmación
+  deleteDialogVisible.value = true;
 };
 
 const deleteVehicle = async () => {
   try {
-    await tenantService.deleteVehicle(vehicleId.value); // Asegúrate de que esta función esté implementada en tu servicio
-    deleteDialogVisible.value = false; // Cierra el diálogo de confirmación
+    await tenantService.deleteVehicle(vehicleId.value);
+    deleteDialogVisible.value = false;
   } catch (error) {
     console.error("Error al eliminar el vehículo:", error);
   }
 };
 
-// Llama a la función al montar el componente
 onMounted(() => {
   fetchVehicleDetails();
 });
@@ -117,17 +114,17 @@ h2{
   justify-content: space-between;
   align-items: center;
   justify-self: center;
-  flex-wrap: wrap; /* Permite que las columnas se envuelvan */
+  flex-wrap: wrap;
 }
 .items{
   width: 50%;
 }
 .value-box{
-  border: 1px solid #ccc; /* Color del borde */
-  border-radius: 4px; /* Bordes redondeados */
-  padding: 8px; /* Espacio interno */
-  background-color: #f9f9f9; /* Color de fondo */
-  margin-top: 4px; /* Espacio entre el párrafo y el recuadro */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  background-color: #f9f9f9;
+  margin-top: 4px;
   width: 95%;
 }
 
@@ -138,16 +135,15 @@ h2{
 strong{
   font-weight: bold;
 }
-/* Tamaño fijo y ajuste de imagen en la galería principal */
+
 .galleria-image {
-  width: 400px; /* Ajusta el tamaño según tus necesidades */
+  width: 400px;
   height: 300px;
   object-fit: cover;
 }
 
-/* Tamaño fijo y ajuste de imagen en las miniaturas */
 .thumbnail-image {
-  width: 80px; /* Tamaño de las miniaturas */
+  width: 80px;
   height: 60px;
   object-fit: cover;
 }
