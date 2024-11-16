@@ -63,14 +63,14 @@ import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router'
 import { TenantApiServices } from '@/contexts/rentals/services/tenant-api.services.js';
 
-const route = useRoute(); // Inicializa la ruta
-const tenantApiServices = new TenantApiServices(); // Asegúrate de que este servicio esté importado
+const route = useRoute();
+const tenantApiServices = new TenantApiServices();
 
 const request = ref(null);
 const user = ref(null);
 
-const requestId = route.params.id; // userId
-const userId = route.query.requestId; // requestId
+const requestId = route.params.id;
+const userId = route.query.requestId;
 
 onMounted(async () => {
 
@@ -90,15 +90,15 @@ onMounted(async () => {
 const approveTenant = async (tenant) => {
   tenant.status = "Approved";
   tenant.contract = "Pendient";
-  await tenantApiServices.updateTenantDates(tenant.id, { status: tenant.status }); // Actualiza en la API
+  await tenantApiServices.updateTenantDates(tenant.id, { status: tenant.status });
   await tenantApiServices.updateTenantDates(tenant.id, { contract: tenant.contract });
 };
 
 const rejectTenant = async (tenant) => {
   tenant.status = "Rejected";
   tenant.contract = "Rejected";
-  await tenantApiServices.updateTenantDates(tenant.id, { status: tenant.status }); // Actualiza en la API
-  await tenantApiServices.updateTenantDates(tenant.id, { contract: tenant.contract }); // Actualiza en la API
+  await tenantApiServices.updateTenantDates(tenant.id, { status: tenant.status });
+  await tenantApiServices.updateTenantDates(tenant.id, { contract: tenant.contract });
 };
 
 import { useRouter } from 'vue-router'
