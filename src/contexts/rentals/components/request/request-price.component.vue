@@ -40,7 +40,6 @@ const fetchTenants = async () => {
 
 onMounted(fetchTenants);
 
-// Observa los cambios en tenantPrice y daysTotal
 watch([tenantPrice, daysTotal], ([newPrice, newDays]) => {
   if (newPrice !== null && newDays > 0) {
     priceFinish.value = newPrice * newDays;
@@ -49,9 +48,8 @@ watch([tenantPrice, daysTotal], ([newPrice, newDays]) => {
   }
 });
 
-// Define la función para actualizar daysTotal
 const updateDaysTotal = (days) => {
-  daysTotal.value = days; // Actualiza el valor de daysTotal
+  daysTotal.value = days;
 };
 
 defineExpose({ tenantPrice, priceFinish, updateDaysTotal, daysTotal });
