@@ -2,43 +2,36 @@
   <div>
     <h1>{{ $t('addNewVehicle') }}</h1>
     <form @submit.prevent="submitForm">
-      <!-- Marca -->
       <div>
         <label for="brand">{{ $t('brand') }}</label>
         <pv-input-text v-model="vehicle.brand" aria-label="Brand" required />
       </div>
 
-      <!-- Modelo -->
       <div>
         <label for="model">{{ $t('model') }}</label>
         <pv-input-text v-model="vehicle.model" aria-label="Model" required />
       </div>
 
-      <!-- Año -->
       <div>
         <label for="year">{{ $t('year') }}</label>
         <pv-input-number v-model="vehicle.year" :min="1900" :max="new Date().getFullYear()" aria-label="Year" required />
       </div>
 
-      <!-- Tarifa por hora -->
       <div>
         <label for="hourlyRate">{{ $t('hourlyRate') }}</label>
         <pv-input-number v-model="vehicle.rate" mode="currency" currency="PEN" aria-label="Hourly Rate" required />
       </div>
 
-      <!-- Descripción -->
       <div>
         <label for="description">{{ $t('description') }}</label>
         <pv-textarea v-model="vehicle.description" aria-label="Description" required />
       </div>
-
-      <!-- Direccion -->
+      
       <div>
         <label for="location">{{ $t('location') }}</label>
         <pv-textarea v-model="vehicle.location" aria-label="location" required />
       </div>
 
-      <!-- Imágenes -->
       <div>
         <label for="images">{{ $t('images') }}</label>
         <input type="file" name="images" multiple @change="onFileChange" />
@@ -67,14 +60,12 @@ const props = defineProps({
   triggerSubmit: Boolean,
 });
 
-// Detecta el cambio en el `prop` triggerSubmit y llama a submitForm si es `true`
 watch(() => props.triggerSubmit, (newValue) => {
   if (newValue) {
     submitForm();
   }
 });
 
-// Crear referencia para el nuevo vehículo
 const vehicle = ref({
   contract:'accepted',
   brand: '',
@@ -83,27 +74,22 @@ const vehicle = ref({
   rate: null,
   description: '',
   location: '',
-  photos: []  // Array donde se guardarán las fotos
+  photos: []
 });
 
-// Guardar vista previa de imágenes
 const imagePreviews = ref([]);
 const toast = useToast();
 const router = useRouter();
 const tenantService = new TenantApiServices();
 
-// Función para manejar la carga de imágenes y generar vista previa
 const onFileChange = (event) => {
   const files = event.target.files;
   vehicle.value.photos = [];
-
-  // Limpiar las vistas previas anteriores
   imagePreviews.value = [];
 
-  // Leer los archivos y generar las vistas previas
   for (let i = 0; i < files.length; i++) {
     const file = files[i];
-    vehicle.value.photos.push(file.name); // Guardamos solo el nombre del archivo en la API
+    vehicle.value.photos.push(file.name);
 
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -113,39 +99,33 @@ const onFileChange = (event) => {
   }
 };
 
-// Función para enviar el formulario y crear el nuevo vehículo
 const submitForm = async () => {
   try {
-    // Llama a la API para crear el nuevo vehículo
     const response = await tenantService.createVehicle(vehicle.value);
-    const newVehicleId = response.data.id; // Accede al ID del nuevo vehículo
+    const newVehicleId = response.data.id;
     console.log("id nueva", newVehicleId);
 
-    // Obtener el ID del propietario logueado
     const loggedInUserId = localStorage.getItem('userId');
 
-    // Obtener todos los propietarios
     const ownersResponse = await tenantService.getAllOwners();
     const foundOwner = ownersResponse.data.find(o => o.owner_id === loggedInUserId);
 
-    // Actualizar el arreglo de vehículos del propietario
     if (foundOwner) {
-      foundOwner.vehicles.push(newVehicleId); // Agregar nuevo vehículo al arreglo
+      foundOwner.vehicles.push(newVehicleId);
 
       const updateData = {
-        id: foundOwner.id,        // Incluye el id del owner
-        owner_id: foundOwner.owner_id,  // Incluye el owner_id
-        vehicles: foundOwner.vehicles // Mantiene el arreglo de vehículos actualizado
+        id: foundOwner.id,
+        owner_id: foundOwner.owner_id,
+        vehicles: foundOwner.vehicles
       };
 
-      // Actualiza el propietario con la estructura correcta
       await tenantService.updateOwnerVehicles(foundOwner.id, updateData);
 
       console.log("despues de estar en el owner id");
     }
 
     toast.add({ severity: 'success', summary: 'Éxito', detail: 'Vehículo creado correctamente' });
-    router.push({ name: 'VehicleList' }); // Redirigir a la lista de vehículos
+    router.push({ name: 'VehicleList' });
   } catch (error) {
     console.error('Error al crear el vehículo:', error);
     toast.add({ severity: 'error', summary: 'Error', detail: 'No se pudo crear el vehículo' });
