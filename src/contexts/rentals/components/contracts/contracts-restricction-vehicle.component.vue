@@ -39,7 +39,7 @@ const router = useRouter();
 const isChecked = ref(false);
 
 const submitFormFromFinish = () => {
-  triggerSubmit.value = !triggerSubmit.value; // Cambia el valor para activar el envío
+  triggerSubmit.value = !triggerSubmit.value;
   router.push({name:'VehicleList'});
 };
 
