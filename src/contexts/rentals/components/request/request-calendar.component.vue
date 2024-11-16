@@ -26,9 +26,9 @@ const daysDifference = computed(() => {
 
 // Emitir el evento cuando cambia daysDifference
 watch(daysDifference, (newDays) => {
-  emit('update:daysTotal', newDays); // Emitimos el nuevo valor
-  emit('update:startDate', formattedStartDate.value); // Emitir fecha de inicio
-  emit('update:endDate', formattedEndDate.value); // Emitir fecha de fin
+  emit('update:daysTotal', newDays);
+  emit('update:startDate', formattedStartDate.value);
+  emit('update:endDate', formattedEndDate.value);
 });
 
 // Emitir fechas cuando se seleccionan
