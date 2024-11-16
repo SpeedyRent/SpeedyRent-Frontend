@@ -33,13 +33,11 @@ const userTenant = ref(null)
 const newPassword = ref('')
 const confirmPassword = ref('')
 
-// Función para obtener el perfil del usuario
 const fetchUserProfile = async () => {
   const userResponse = await tenantApiServices.getUserById(loggedInUserId)
   userTenant.value = userResponse.data
 }
 
-// Inicializar el perfil del usuario
 fetchUserProfile()
 
 const updateProfile = async () => {
@@ -53,7 +51,7 @@ const updateProfile = async () => {
 
 const changePassword = async () => {
   if (newPassword.value === confirmPassword.value) {
-    userTenant.value.password = newPassword.value // Actualizar la contraseña en el objeto del usuario
+    userTenant.value.password = newPassword.value
     try {
       await tenantApiServices.updateUser(loggedInUserId, userTenant.value)
       alert('Contraseña cambiada correctamente.')
