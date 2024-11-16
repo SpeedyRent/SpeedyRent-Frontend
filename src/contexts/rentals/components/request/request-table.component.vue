@@ -18,7 +18,6 @@
           <pv-tag :value="slotProps.data.status" :severity="getSeverity(slotProps.data)" />
         </template>
       </pv-column>
-      <!-- Nueva columna para el botón -->
       <pv-column :header="$t('action')">
         <template #body="slotProps">
           <pv-button v-if="slotProps.data.status === 'Approved' && slotProps.data.contract === 'Pendient'" :label="$t('pay')" @click="handleAction(slotProps.data.id)" />
@@ -62,7 +61,6 @@ const getSeverity = (tenant) => {
   }
 };
 
-// Función para manejar la acción del botón
 const handleAction = (requestId) => {
   console.log("id del request:", requestId);
   router.push({ name: 'ContractsRent' ,params: {id: requestId} });
@@ -80,7 +78,7 @@ fetchOwnerVehicles();
 <style scoped>
 
 .card {
-  background-color: #f9f9f9; /* Fondo claro para la tarjeta */
+  background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 16px;
@@ -100,16 +98,16 @@ fetchOwnerVehicles();
 }
 
 .styled-table th {
-  background-color: #4CAF50; /* Color de fondo para el encabezado */
+  background-color: #4CAF50;
   color: white;
 }
 
 .styled-table tr:hover {
-  background-color: #f1f1f1; /* Color al pasar el mouse sobre la fila */
+  background-color: #f1f1f1;
 }
 
 .styled-table .p-tag {
-  margin: 0; /* Eliminar márgenes de los tags */
+  margin: 0;
 }
 
 </style>
