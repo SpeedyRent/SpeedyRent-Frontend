@@ -94,7 +94,7 @@ const toggleDropdown = () => {
 const languageLabel = computed(() => (locale.value === 'en' ? 'EN' : 'ES'));
 
 function toggleLanguage() {
-  locale.value = locale.value === 'en' ? 'es' : 'en'; // Alternar entre inglés y español
+  locale.value = locale.value === 'en' ? 'es' : 'en';
 }
 
 </script>
@@ -145,17 +145,17 @@ function toggleLanguage() {
 
 .end-container {
   display: flex;
-  align-items: center; /* Centra verticalmente los elementos */
+  align-items: center; 
 }
 
 .language-switcher {
   background-color: white;
   border-radius: 10px;
-  margin-right: 10px; /* Espacio entre el botón de idioma y el menú de usuario */
+  margin-right: 10px; 
 }
 
 .user-icon {
-  cursor: pointer; /* Cambia el cursor al pasar sobre el icono */
+  cursor: pointer;
 }
 .user-menu {
   color: white;
