@@ -4,7 +4,6 @@
     <div class="photos-section">
       <h3>{{ $t('currentPhotos') }}</h3>
       <div v-if="newPhotos.length === 0 && vehicleEdit.photos.length > 0">
-        <!-- Mostrar fotos antiguas si no se han seleccionado nuevas -->
         <pv-galleria
           :value="vehicleEdit.photos"
           :numVisible="3"
@@ -22,7 +21,6 @@
       </div>
 
       <div v-else>
-        <!-- Mostrar nuevas fotos seleccionadas -->
         <pv-galleria
           :value="newPhotos"
           :numVisible="3"
@@ -37,10 +35,8 @@
       </div>
     </div>
 
-    <!-- Botón para cambiar imágenes -->
     <pv-button :label="$t('changePhotos')" icon="pi pi-images" @click="showChangePhotosDialog" />
 
-    <!-- Diálogo de confirmación para cambiar fotos -->
     <pv-dialog :visible="changePhotosDialog" modal @hide="changePhotosDialog = false">
       <template #header>
         <h3>{{ $t('changePhotosDialogTitle') }}</h3>
@@ -50,7 +46,6 @@
       <pv-button label="reject" icon="pi pi-times" @click="changePhotosDialog = false" />
     </pv-dialog>
 
-    <!-- Formulario de edición -->
     <form @submit.prevent="saveVehicle" class="edit-form">
       <div>
         <label for="brand">{{ $t('brand') }}</label>
@@ -77,7 +72,6 @@
         <pv-textarea id="description" v-model="vehicleEdit.description" style="width: 100%"></pv-textarea>
       </div>
 
-      <!-- Campo para cargar nuevas fotos, solo visible después de aceptar el diálogo -->
       <div v-if="allowPhotoSelection">
         <label for="photos">{{ $t('newPhotos') }}</label>
         <input type="file" id="photos" multiple @change="handlePhotoUpload" />
@@ -108,32 +102,27 @@ const tenantService = new TenantApiServices();
 const toast = useToast();
 const vehicleId = ref(route.params.id);
 
-// Estado para controlar el diálogo y la selección de nuevas fotos
 const changePhotosDialog = ref(false);
-const allowPhotoSelection = ref(false);  // Solo permite seleccionar fotos después de aceptar el diálogo
-const newPhotos = ref([]);  // Almacenar temporalmente las nuevas fotos
+const allowPhotoSelection = ref(false);
+const newPhotos = ref([]);
 
-// Mostrar el diálogo de confirmación
 const showChangePhotosDialog = () => {
   changePhotosDialog.value = true;
 };
 
-// Al aceptar, permitimos seleccionar nuevas fotos
 const handleAcceptPhotoChange = () => {
   changePhotosDialog.value = false;
-  allowPhotoSelection.value = true;  // Habilitar campo de selección de fotos
+  allowPhotoSelection.value = true;
 };
 
-// Manejar la carga de nuevas fotos
 const handlePhotoUpload = (event) => {
   const files = Array.from(event.target.files);
   newPhotos.value = files.map(file => ({
     name: file.name,
-    preview: URL.createObjectURL(file),  // Mostrar vista previa
+    preview: URL.createObjectURL(file),
   }));
 };
 
-// Obtener los datos del vehículo para editarlos
 const fetchVehicle = async () => {
   try {
     const response = await tenantService.getVehicleById(vehicleId.value);
@@ -144,15 +133,12 @@ const fetchVehicle = async () => {
   }
 };
 
-// Función para guardar los cambios del vehículo
 const saveVehicle = async () => {
   try {
-    // Si se seleccionaron nuevas fotos, actualizamos el campo photos con los nuevos nombres
     if (newPhotos.value.length > 0) {
       vehicleEdit.value.photos = newPhotos.value.map(photo => photo.name);
     }
 
-    // Actualizar vehículo en la API
     await tenantService.updateVehicleById(vehicleId.value, vehicleEdit.value);
     toast.add({ severity: 'success', summary: 'Éxito', detail: 'Vehículo actualizado correctamente' });
     router.push({ name: 'VehicleList' }); // Redirige a la lista de vehículos
@@ -162,7 +148,6 @@ const saveVehicle = async () => {
   }
 };
 
-// Función para regresar a la lista sin guardar
 const goBack = () => {
   router.push({ name: 'VehicleList' });
 };
