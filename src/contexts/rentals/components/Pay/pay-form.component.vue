@@ -188,8 +188,8 @@ img {
   display: flex;
   flex-direction: row;
   gap: 20px;
-  justify-content: center; /* Centra los botones */
-  margin: 20px 0; /* Espaciado alrededor de la selección */
+  justify-content: center;
+  margin: 20px 0;
 }
 .items{
   align-items: center;
