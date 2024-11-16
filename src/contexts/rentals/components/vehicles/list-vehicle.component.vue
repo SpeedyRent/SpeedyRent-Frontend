@@ -4,7 +4,7 @@
       <h2>{{$t('Vehicles')}}</h2>
       <pv-button :label="$t('addNewVehicle')" class="addVehicle" icon="pi pi-plus" rounded @click="addVehicle" />
     </div>
-    <div v-if="foundOwner"> <!-- Se mostrará solo si se encuentra el propietario -->
+    <div v-if="foundOwner">
       <pv-data-table :value="vehicles" responsiveLayout="scroll" class="table">
         <pv-column :header="$t('photos')">
           <template #body="slotProps">
@@ -43,40 +43,31 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { TenantApiServices } from '@/contexts/rentals/services/tenant-api.services';
 
-const vehicles = ref([]); // Crea una referencia reactiva para almacenar los vehículos
+const vehicles = ref([]);
 const deleteDialogVisible = ref(false);
 const router = useRouter();
 const tenantService = new TenantApiServices();
 const vehicleToDelete = ref(null);
-const foundOwner = ref(false); // Añadido para indicar si se encontró un propietario
+const foundOwner = ref(false);
 
-// Obtener el ID del usuario logueado desde el localStorage
 const loggedInUserId = localStorage.getItem('userId');
 
-// Función para obtener los vehículos del propietario
 const fetchOwnerVehicles = async () => {
   try {
     const ownersResponse = await tenantService.getAllOwners();
     console.log("Data de propietarios:", ownersResponse.data);
-
-    // Encuentra el propietario cuyo owner_id coincide con loggedInUserId
     const owner = ownersResponse.data.find(o => o.owner_id === loggedInUserId);
 
     if (owner) {
-      foundOwner.value = true; // Se encontró un propietario
+      foundOwner.value = true;
       console.log("Propietario encontrado:", owner);
 
-      // Obtener vehículos del propietario
       const vehiclesResponse = await tenantService.getAllVehicles();
       console.log("Data de vehículos:", vehiclesResponse.data);
-
-      // Filtrar los vehículos que pertenecen al propietario encontrado
       vehicles.value = vehiclesResponse.data.filter(vehicle => owner.vehicles.includes(vehicle.id));
-
-      // Imprimir los vehículos encontrados
       console.log("Vehículos del propietario:", vehicles.value);
     } else {
-      foundOwner.value = false; // No se encontró propietario
+      foundOwner.value = false;
       console.log("No se encontró un propietario con el ID:", loggedInUserId);
     }
   } catch (error) {
@@ -84,7 +75,6 @@ const fetchOwnerVehicles = async () => {
   }
 }
 
-// Funciones adicionales para manejar las acciones
 const addVehicle = () => {
   router.push({ name: 'ContractsRestricction' });
 }
@@ -98,28 +88,22 @@ const editVehicle = (car_id) => {
 };
 
 const confirmDelete = (vehicleId) => {
-  // Mostrar un diálogo de confirmación
   deleteDialogVisible.value = true;
-  // Guardar el ID del vehículo a eliminar
   vehicleToDelete.value = vehicleId;
 };
 
 const deleteVehicle = async () => {
   try {
-    // Llamar al servicio para eliminar el vehículo
     await tenantService.deleteVehicle(vehicleToDelete.value);
 
-    // Filtrar los vehículos para eliminar el que fue borrado
     vehicles.value = vehicles.value.filter(vehicle => vehicle.id !== vehicleToDelete.value);
 
-    // Ocultar el diálogo de confirmación
     deleteDialogVisible.value = false;
   } catch (error) {
     console.error("Error al eliminar el vehículo:", error);
   }
 };
 
-// Llama a la función para cargar los vehículos cuando el componente se monte
 fetchOwnerVehicles();
 
 </script>
