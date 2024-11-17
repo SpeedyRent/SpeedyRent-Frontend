@@ -42,12 +42,7 @@
       </table>
     </div>
 
-    <!-- Mensaje de error si no se encuentran vehículos -->
-    <div v-else>
-      <p>No se encontraron vehículos con los filtros de búsqueda.</p>
-    </div>
-  </div>
-</template>
+ 
 
 <script>
 export default {
