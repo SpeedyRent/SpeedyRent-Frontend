@@ -1,23 +1,4 @@
-<template>
-  <div class="search-vehicles">
-    <h1>Busqueda de vehículos para rentar</h1>
 
-    <!-- Filtros de búsqueda -->
-    <div class="filters">
-      <label>Marca:</label>
-      <input v-model="filters.marca" type="text" placeholder="Buscar por marca" />
-
-      <label>Modelo:</label>
-      <input v-model="filters.modelo" type="text" placeholder="Buscar por modelo" />
-
-      <label>Año:</label>
-      <input v-model="filters.anio" type="number" placeholder="Buscar por año" />
-
-      <label>Precio máximo:</label>
-      <input v-model="filters.precioMax" type="number" placeholder="Precio máximo" />
-
-      <button @click="buscarVehiculos">Buscar</button>
-    </div>
 
     <!-- Tabla de resultados -->
     <div v-if="vehiculosFiltrados.length">
