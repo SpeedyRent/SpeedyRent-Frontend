@@ -42,6 +42,11 @@
       </table>
     </div>
 
+    <div v-else>
+      <p>No se encontraron vehículos con los filtros de búsqueda.</p>
+    </div>
+  </div>
+</template>
  
 
 <script>
