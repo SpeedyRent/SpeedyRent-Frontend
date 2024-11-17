@@ -81,7 +81,7 @@ export default {
     }
   },
   mounted() {
-    this.vehiculosFiltrados = this.vehiculos; // Inicialmente mostramos todos los vehículos
+    this.vehiculosFiltrados = this.vehiculos; 
   }
 };
 </script>
